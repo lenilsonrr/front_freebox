@@ -1,88 +1,106 @@
 <template>
-    <div class="box-cadastro">
-        <form >
-            <input type="email" placeholder="email" v-model="email" required>
-            <input type="text" placeholder="nome" v-model="nome" required>
-            <input type="tel" placeholder="cel"  v-model="telefone" required />
-            <input type="text" placeholder="CNPJ" v-model="cnpj" required>
-            <input type="password" placeholder="senha" v-model="senha" required>
-        </form>
-        <Botao nome="Cadastrar" @click="teste" />
+    <h1>CADASTRAR</h1>
+    <div>
+        <img src="../imgs/login.png" alt="Imagem login">
+        <input type="email" placeholder="Email" v-model="email">
+        <input type="password" placeholder="Senha" v-model="senha">
+        <button @click="cadastrar">Cadastrar</button>
+        <p>Já tem cadastro? <router-link class="link" to="/login">Login</router-link></p>
     </div>
 </template>
+  
 <script>
-import Botao from '../util/Botao.vue';
-import axios from 'axios';
-import router from '../router';
-
-
+import firebase from 'firebase'
 export default {
-    nome: 'cadastro',
-    components: {
-        Botao
-    },
+    name: "Cadastro",
     data() {
         return {
-            email: null,
-            nome: null,
-            telefone: null,
-            cnpj: null,
-            senha:null
+            email: "",
+            senha: "",
+            initials: ""
         }
     }, methods: {
-        async teste() {
-            try {
-                const response = await axios.post('http://localhost:8080/lojistas', {
-                    email: this.email,
-                    nome: this.nome,
-                    telefone: this.telefone,
-                    cnpj: this.cnpj,
-                    senha: this.senha
-                });
-                this.limpar()
-                this.$router.push('/login')
-                console.log('Sucesso:', response.data);
-            } catch (error) {
-                console.error('Erro:', error);
-            }
-        },
-        limpar() {
-            this.email = ''
-            this.nome = ''
-            this.telefone = ''
-            this.cnpj = ''
-            this.senha = ''
+        cadastrar() {
+            firebase
+                .auth()
+                .createUserWithEmailAndPassword(this.email, this.senha)
+                .then((user) => {
+                    this.$router.push("/login")
+                    console.log(user)
+                }, (err) => {
+                    alert(err)
+                }
+                )
         }
     },
+
 }
 </script>
-<style>
-.box-cadastro {
-    align-items: center;
+  
+<style scoped>
+* {
     display: flex;
-    flex-direction: column;
-    width: 350px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 50px;
-    background: #fff;
-    padding: 100px;
-    border-radius: 30px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-form {
-    background: white;
+h1 {
+    margin-top: 30px;
+    color: #fff;
+    width: 90%;
+    border-bottom: 2px solid #000;
+    max-width: 450px;
+    font-weight: bold;
 }
 
-.box-cadastro input {
-    background: rgb(223, 222, 222);
+div {
+    background: #FC7A00;
+    padding: 30px;
     display: flex;
+    width: 90%;
+    flex-direction: column;
+    margin-top: 50px;
+    border-radius: 30px;
+    max-width: 450px;
+}
+
+img {
+    width: 150px;
+    background: #FC7A00;
+}
+
+input {
+    background: #fff;
     outline: none;
     border: none;
-    margin: 10px;
-    height: 30px;
-    width: 100%;
-    text-align: center;
     border-radius: 30px;
+    width: 80%;
+    margin-bottom: 30px;
+}
+
+button {
+    border: none;
+    width: 70%;
+    border-radius: 30px;
+    transition: 200ms;
+    color: #fff;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+.link {
+    background: #FC7A00;
+}
+
+p {
+    background: #FC7A00;
 }
 </style>

@@ -19,8 +19,8 @@ export default {
   width: 150px;
   border: none;
   text-decoration: none;
-  background-color: #FC7A00;
-  color: #000;
+  background-color: #00477A;
+  color: #fff;
   border-radius: 30px;
   display: flex;
   align-items: center;

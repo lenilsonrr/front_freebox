@@ -4,6 +4,8 @@ import Cliente from '../views/Cliente.vue'
 import Fornecedor from '../views/Fornecedor.vue'
 import Cadastro from '../views/Cadastro.vue'
 import Login from '../views/Login.vue'
+import Recuperar from '../views/Recuperar.vue'
+import Sistema from '../views/Sistema.vue'
 
 const routes = [
   {
@@ -30,6 +32,16 @@ const routes = [
     path:'/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path:'/recuperar',
+    name: 'Recuperar',
+    component: Recuperar
+  },
+  {
+    path:'/sistema',
+    name: 'Sistema',
+    component: Sistema
   }
 ]
 

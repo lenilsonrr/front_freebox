@@ -1,18 +1,18 @@
 <template>
   <div>
-    <span class="titulo-home">FREE BOX</span>
+    <h1 class="titulo-home">FREE BOX</h1>
     <div class="entradas">
       <div class="home-login">
         <img src="../imgs/login.png" alt="imagem login">
-        <span>LOJISTA</span>
+        <h3>LOJISTA</h3>
       </div>
       <!-- <div class="home-fornecedor">
         <a href="/fornecedor"><img src="../imgs/caminhao.png" alt="imagem fornecedor"></a>
         <span>FORNECEDOR</span>
       </div>-->
     </div>
-    <a class="home-btn_cadastro" href="/login">Login</a>
-    <a class="home-btn_cadastro" href="/cadastro">Cadastre-se agora!</a>
+    <router-link class="home-btn_cadastro" to="/login">Login</router-link>
+    <router-link class="home-btn_cadastro" to="/cadastro">Cadastre-se agora!</router-link>
   </div>
 </template>
 
@@ -22,18 +22,33 @@ export default {
 }
 </script>
 
-<style>
-.titulo-home {
-  font-size: 28px;
+<style scoped>
+
+* {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1 {
   color: white;
+  border-bottom: 2px solid #000;
+  width: 90%;
+  max-width: 450px;
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 30px;
   font-weight: 900;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .entradas {
-  margin-top: 30px;
+  margin-top: 72px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -78,13 +93,7 @@ export default {
   transition: 200ms;
 }
 
-.home-btn_cadastro:hover{
+.home-btn_cadastro:hover {
   transform: scale(1.1);
-}
-.esqueci{
-  color: #000;
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
 }
 </style>
